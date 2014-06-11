@@ -24,8 +24,8 @@
 	# modules, e.g.
 	#LogLevel info ssl:warn
 
-	ErrorLog {{ doc_root }}/y2test/backend/runtime/error.log
-	CustomLog {{ doc_root }}/y2test/backend/runtime/access.log combined
+	# ErrorLog {{ doc_root }}/y2test/backend/runtime/error.log
+	# CustomLog {{ doc_root }}/y2test/backend/runtime/access.log combined
 
 	# For most configuration files from conf-available/, which are
 	# enabled or disabled at a global level, it is possible to
