@@ -1,7 +1,13 @@
 ---
-- name: Update apt
-  sudo: yes
-  apt: update_cache=yes
+- name: set locale to {{ locale }}
+  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL={{ locale }}
+
+- name: set /etc/localtime to {{ timezone }}
+  command: /bin/cp /usr/share/zoneinfo/{{ timezone }} /etc/localtime
+
+- name: set /etc/timezone to {{ timezone }}
+  template: src=timezone dest=/etc/timezone
+  notify: update tzdata
 
 - name: Install System Packages
   sudo: yes
@@ -15,9 +21,9 @@
   # sudo: yes
   # apt_repository: repo=ppa:ondrej/{{ php_ppa }}
 
-- name: Update apt
-  sudo: yes
-  apt: update_cache=yes
+# - name: Update apt
+  # sudo: yes
+  # apt: update_cache=yes
 
 - name: Install Extra Packages
   sudo: yes

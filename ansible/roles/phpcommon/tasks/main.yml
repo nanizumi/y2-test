@@ -3,6 +3,11 @@
   apt: pkg={{ item }} state=latest
   with_items: php_packages
 
-- name: "Config xdebug"
+- name: Config xdebug
+  sudo: yes
   copy: src=/vagrant/ansible/roles/phpcommon/files/xdebug.ini dest=/etc/php5/mods-available/xdebug.ini
   notify: restart apache
+  
+- name: enable mcrypt
+  sudo: yes
+  shell: php5enmod mcrypt

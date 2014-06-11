@@ -5,7 +5,7 @@
 Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v|
-        v.name = "Yii-Vagrant"
+        v.name = "y2-test"
         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", 1]
     end
 
@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     config.ssh.forward_agent = true
 
     # Port forwards
-    config.vm.network "forwarded_port", guest: 80, host: 8888
+    # config.vm.network "forwarded_port", guest: 80, host: 8888
     
 	# PLUGINS
 	# https://coderwall.com/p/7s40kg

@@ -1,2 +1,6 @@
 - name: Install Composer
   shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
+  
+- name: update yii project
+  #composer: command=update working-dir=/vagrant/html/y2test
+  shell: composer update --prefer-dist --working-dir /vagrant/html/y2test

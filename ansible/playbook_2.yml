@@ -13,12 +13,12 @@
     locale: en_US.UTF-8
     timezone: Europe/Lisbon
   roles:
-    - init
+    #- init2
     - apache
-    - php5
-    - composer
-    - phpcommon
-    - mysql
+    #- php5
+    #- composer
+    #- phpcommon
+    #- mysql
     #- nodejs
     #- lesscss
     

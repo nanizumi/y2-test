@@ -22,8 +22,29 @@
   notify: restart apache
   when: apache_version.stdout.find('Apache/2.4.') != -1
 
-- name: Change default apache2.2 site
+- name: Add frontend vhost
   sudo: yes
-  template: src=vhost.conf.tpl dest=/etc/apache2/sites-available/default.conf
+  template: src=vhost-frontend.conf.tpl dest=/etc/apache2/sites-available/001-frontend.conf
+
+- name: Add backend vhost
+  sudo: yes
+  template: src=vhost-backend.conf.tpl dest=/etc/apache2/sites-available/002-backend.conf
+
+- name: update hosts (frontend)
+  sudo: yes
+  shell: echo 127.0.0.1 frontend.localhost >> /etc/hosts
+
+- name: update hosts (backend)
+  sudo: yes
+  shell: echo 127.0.0.1 backend.localhost >> /etc/hosts
+  notify: restart network
+
+- name: Enable frontend vhost
+  sudo: yes
+  shell: a2ensite 001-frontend.conf
   notify: restart apache
-  when: apache_version.stdout.find('Apache/2.2.') != -1
+
+- name: Enable backend vhost
+  sudo: yes
+  shell: a2ensite 002-backend.conf
+  notify: restart apache
